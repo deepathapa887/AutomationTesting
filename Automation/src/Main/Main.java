@@ -24,21 +24,18 @@ class Main {
 		System.setProperty("webdriver.gecko.driver",
 				"C:\\Program Files\\eclipse\\java-2019-09\\eclipse\\geckodriver-v0.25.0-win64-20190920T141612Z-001\\geckodriver\\geckodriver.exe");
 
-		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-		/*
-		 * String expectedTitle = "My Store"; String actualTitle = driver.getTitle(); if
-		 * (expectedTitle.equals(actualTitle)) { System.out.
-		 * println("Verification Successful - The correct title is displayed on the web page."
-		 * ); } else { System.out.
-		 * println("Verification Failed - An incorrect title is displayed on the web page."
-		 * ); }
-		 */
-	}
+					}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		driver.get("http://automationpractice.com");
+		String expectedTitle = "My Store";
+		String actualTitle = driver.getTitle();
+		if (expectedTitle.equals(actualTitle)) {
+			System.out.println("Verification Successful - The correct title is displayed on the web page.");
+		} else {
+			System.out.println("Verification Failed - An incorrect title is displayed on the web page.");
+		}
 	}
 
 	@Test
@@ -60,14 +57,6 @@ class Main {
 			System.out.println("Login page retervied!");
 			driver.findElement(By.className("account_input")).sendKeys("deepa7.thapa887@live.com");
 			driver.findElement(By.id("SubmitCreate")).click();
-
-			String expectedTitle = "My Store";
-			String actualTitle = driver.getTitle();
-			if (expectedTitle.equals(actualTitle)) {
-				System.out.println("Verification Successful - The correct title is displayed on the web page.");
-			} else {
-				System.out.println("Verification Failed - An incorrect title is displayed on the web page.");
-			}
 			driver.findElement(By.id("uniform-id_gender2")).click();
 			driver.findElement(By.id("customer_firstname")).sendKeys("Deepa");
 			driver.findElement(By.id("customer_lastname")).sendKeys("Thapa");
