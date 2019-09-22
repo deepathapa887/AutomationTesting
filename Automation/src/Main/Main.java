@@ -11,7 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 class Main {
 
@@ -45,14 +47,14 @@ class Main {
 		login();
 		addToCard();
 		paymentGateway();
-		fail("Not yet implemented");
+
 	}
 
 	void registration() {
 		try {
 			System.out.println("Regestration page started!");
 			driver.findElement(By.className("login")).click();
-			
+
 			driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 
 			System.out.println("Login page retervied!");
@@ -120,19 +122,43 @@ class Main {
 		driver.findElement(By.id("email")).sendKeys("deepa.thapa887@live.com");
 		driver.findElement(By.id("passwd")).sendKeys("Deepa@143");
 		driver.findElement(By.id("SubmitLogin")).click();
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);
 		driver.findElement(By.className("home")).click();
-		//driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 	}
 
 	void addToCard() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.className("replace-2x img-responsive")).click();
-		
-
+		try {
+			driver.get("http://automationpractice.com/index.php?id_product=1&controller=product");
+			driver.findElement(By.id("add_to_cart")).click();
+			System.out.println("execute");
+			driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+			driver.findElement(By.className("cross")).click();
+			driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+			driver.findElement(By.className("home")).click();
+			driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+			driver.get("http://automationpractice.com/index.php?id_product=2&controller=product");
+			driver.findElement(By.id("add_to_cart")).click();
+			driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+			driver.findElement(By.xpath("//span(contains[@class='cross']")).click();
+			driver.findElement(By.className("home")).click();
+			System.out.println("Entered into the homepage");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	void paymentGateway() {
+
+		driver.findElement(By.className("shopping_cart")).click();
+		driver.findElement(By.id("button_order_cart")).click();
+		driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]")).click();
+		driver.findElement(By.className("button btn btn-default button-medium")).click();
+		driver.findElement(By.id("cgv")).click();
+		driver.findElement(By.xpath("//*[@id=\"form\"]/p/button/span")).click();
+		driver.findElement(By.className("cheque")).click();
+		driver.findElement(By.xpath("//*[@id=\"cart_navigation\"]/button/span")).click();
+		System.out.println("Succefully completed");
 
 	}
 }
