@@ -118,7 +118,7 @@ class Main {
 
 	void addToCard() {
 		try { 
-			int number = 1;
+			int number = 2;
 			for(int i= 1; i <= number;i++) {
 				driver.get("http://automationpractice.com/index.php?id_product=" + i + "&controller=product");
 				driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
@@ -150,13 +150,17 @@ class Main {
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);		
 		System.out.println("standard-checkout");
 		wait.until(ExpectedConditions.elementToBeClickable(By.className("button-exclusive"))).click();	
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);	
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("cgv"))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.className("standard-checkout"))).click();	
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);	
+		System.out.println("standard-checkout111");
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);	
+		driver.findElement(By.cssSelector(".cart_navigation .button-medium")).click();
+		System.out.println("standard-checkout2222");
+		driver.findElement(By.cssSelector(".cart_navigation .button-medium")).click();	
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.findElement(By.id("cgv")).click();
+		driver.findElement(By.cssSelector(".cart_navigation .button-medium span")).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.className("cheque"))).click();	
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);		
-		wait.until(ExpectedConditions.elementToBeClickable(By.className("button-medium"))).click();	
+		driver.findElement(By.cssSelector(".cart_navigation .button-medium span")).click();	
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 
 	}
