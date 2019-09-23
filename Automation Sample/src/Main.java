@@ -40,7 +40,7 @@ class Main {
 
 	@Test
 	void test() {
-		// registration();
+		registration();
 		login();
 		addToCard();
 		paymentGateway();
