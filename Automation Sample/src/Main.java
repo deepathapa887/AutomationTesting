@@ -42,7 +42,7 @@ class Main {
 	void test() {
 		registration();
 		login();
-		addToCard();
+		addToCart();
 		paymentGateway();
 
 	}
@@ -116,7 +116,7 @@ class Main {
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 	}
 
-	void addToCard() {
+	void addToCart() {
 		try { 
 			int number = 2;
 			for(int i= 1; i <= number;i++) {
